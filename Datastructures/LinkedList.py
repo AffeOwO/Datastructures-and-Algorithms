@@ -91,15 +91,3 @@ class LinkedList(Node):
 
 if __name__ == "__main__":
     ll = LinkedList(["teddy", "yas"])
-    print(ll)
-    ll.insert_at_start("test")
-    ll.insert_at_start(5)
-    ll.insert_at_end(2)
-    ll.insert_values_at_end([1, 2, 3])
-    ll.insert_values_at_start([1, 2, 3])
-    print(ll)
-    print(len(ll))
-    ll.remove_element(9)
-    print(ll)
-    ll.insert_at(-1, "discord")
-    print(ll)
