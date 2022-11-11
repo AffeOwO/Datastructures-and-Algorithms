@@ -89,13 +89,17 @@ class LinkedList(Node):
             count += 1
             itr = itr.next
 
+    def find(self, value):
+        # ToDo: Function to find index of value in linkedlist (first) -> returns index
+        pass
+
+    def rfind(self, value):
+        # ToDo: Function to find index of value in linkedlist (last) -> returns index
+        pass
+
+
 
 if __name__ == "__main__":
     ll = LinkedList(["teddy", "yas"])
-    print(ll)
-    print(len(ll))
-
-    ll.insert_at(1, "discord")
-
     print(ll)
     print(len(ll))
