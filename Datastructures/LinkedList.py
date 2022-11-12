@@ -83,23 +83,25 @@ class LinkedList(Node):
         count = 0
         itr = self.head
         while itr:
-            if count == index - 1 or count == len(self) + index - 1:
+            if count == index - 1 or count == len(self) + index + 1:
                 itr.next = itr.next.next
                 break
             count += 1
             itr = itr.next
 
     def find(self, value):
-        # ToDo: Function to find index of value in linkedlist (first) -> returns index
+        # ToDo: Function to find value of index in linkedlist (first) -> returns value
         pass
 
     def rfind(self, value):
-        # ToDo: Function to find index of value in linkedlist (last) -> returns index
+        # ToDo: Function to find value of index in linkedlist (last) -> returns value
         pass
 
+# ToDo: fix negative index not working properly for deleting and inserting
 
 
 if __name__ == "__main__":
     ll = LinkedList(["teddy", "yas"])
+    ll.remove_element(-1)
     print(ll)
     print(len(ll))
