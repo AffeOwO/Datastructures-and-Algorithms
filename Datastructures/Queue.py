@@ -2,10 +2,10 @@ class Queue:
     def __init__(self):
         self.head = []
 
-    def push(self, new_element):
+    def enqueue(self, new_element):
         self.head.append(new_element)
 
-    def pop(self):
+    def dequeue(self):
         if not self.head:
             raise "IndexError"
         self.head.pop(0)
