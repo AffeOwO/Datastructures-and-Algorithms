@@ -6,6 +6,9 @@ def binary_search(array: list, value) -> int:
         mid = start + (end - start) // 2
         # print(mid, start, end)  # DEBUGGING
         if value == array[mid]:
+            # returns first index
+            while array[mid - 1] == value:
+                mid -= 1
             return mid
         elif value < array[mid]:
             end = mid - 1
@@ -24,6 +27,9 @@ def recursive_binary_search(array: list, value, start: int, end: int):
     mid = start + (end - start) // 2
     # print(mid, start, end)  # DEBUGGING
     if value == array[mid]:
+        # returns first index
+        while array[mid-1] == value:
+            mid -= 1
         return mid
     elif value < array[mid]:
         end = mid - 1
@@ -34,7 +40,7 @@ def recursive_binary_search(array: list, value, start: int, end: int):
 
 
 if __name__ == "__main__":
-    temp = [1, 3, 9, 10, 11, 13, 15, 19, 29]
+    temp = [1, 3, 9, 10, 11, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 15, 19, 29]
     print(binary_search(temp, 13))
     print()
     print(recursive_binary_search(temp, 13, 0, len(temp) - 1))
