@@ -4,6 +4,7 @@ def binary_search(array, value):
 
     while start <= end:
         mid = start + (end - start) // 2
+        print(mid, start, end)
         if value == array[mid]:
             return mid
         elif value < array[mid]:
@@ -16,4 +17,4 @@ def binary_search(array, value):
 
 
 if __name__ == "__main__":
-    print(binary_search([1, 3, 9, 10, 11, 15, 19, 29], 11))
+    print(binary_search([1, 3, 9, 10, 11, 13, 15, 19, 29], 13))
