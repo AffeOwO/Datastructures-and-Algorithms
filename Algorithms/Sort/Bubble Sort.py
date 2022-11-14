@@ -1,7 +1,8 @@
+# O(n^2)
 def bubble_sort(array: list):
     length = len(array) - 1
-    for _ in range(length):
-        for i in range(length):
+    for o in range(length):
+        for i in range(length - o):
             if array[i] > array[i + 1]:
                 array[i], array[i + 1] = array[i + 1], array[i]
     return array
