@@ -1,3 +1,4 @@
+# O(n)
 def linear_search(array: list, value) -> int:
     for index, i in enumerate(array):
         if i == value:
