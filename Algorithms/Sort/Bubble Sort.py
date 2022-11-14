@@ -9,5 +9,4 @@ def bubble_sort(array: list):
 
 if __name__ == "__main__":
     print(bubble_sort([9-i for i in range(10)]))
-
     # Output: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
