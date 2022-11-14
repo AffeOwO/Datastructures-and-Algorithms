@@ -4,5 +4,6 @@ def linear_search(array: list, value) -> int:
             return index
     return -1
 
+
 if __name__ == "__main__":
     pass
