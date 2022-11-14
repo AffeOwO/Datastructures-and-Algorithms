@@ -1,3 +1,4 @@
+# O(log(n))
 def binary_search(array: list, value) -> int:
     start = 0
     end = len(array) - 1
