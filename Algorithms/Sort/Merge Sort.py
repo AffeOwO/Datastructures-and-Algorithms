@@ -28,9 +28,10 @@ def merge_sort(array: list):
             array[k] = right[j]
             j += 1
             k += 1
-        return array
+
+    return array
 
 
 if __name__ == "__main__":
-    array = [9 - i for i in range(10)]
-    print(merge_sort(array))
+    arr = [9 - i for i in range(10)]
+    print(merge_sort(arr))
