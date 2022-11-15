@@ -7,4 +7,5 @@ def linear_search(array: list, value) -> int:
 
 
 if __name__ == "__main__":
-    pass
+    arr = [1, 1, 3, 4, 6, 6, 21, 42, 63, 122, 213]
+    print(linear_search(arr, 3))
