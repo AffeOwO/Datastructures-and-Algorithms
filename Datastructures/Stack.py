@@ -15,6 +15,11 @@ class Stack:
             raise "IndexError"
         return self.head[-1]
 
+    def is_empty(self):
+        if not self.head:
+            return True
+        return False
+
 
 if __name__ == "__main__":
     test = Stack()
