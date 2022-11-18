@@ -1,37 +1,33 @@
 # O(n*log(n))
-def merge_sort(array: list):
-    if len(array) > 1:
-        # r = place where array is divided
-        r = len(array) // 2
-        left = array[:r]
-        right = array[r:]
-
-        merge_sort(left)
-        merge_sort(right)
-
-        i = j = k = 0
-
-        while i < len(left) and j < len(right):
-            if left[i] < right[i]:
-                array[k] = left[i]
-                i += 1
-            else:
-                array[k] = right[j]
-                j += 1
-            k += 1
-
-        while i < len(left):
-            array[k] = left[i]
+def merge(left, right):
+    if not len(left) or not len(right):
+        return left or right
+    result = []
+    i, j = 0, 0
+    while (len(result) < len(left) + len(right)):
+        if left[i] < right[j]:
+            result.append(left[i])
             i += 1
-            k += 1
-        while j < len(right):
-            array[k] = right[j]
+        else:
+            result.append(right[j])
             j += 1
-            k += 1
+        if i == len(left) or j == len(right):
+            result.extend(left[i:] or right[j:])
+            break
+    return result
 
-    return array
+
+def merge_sort(list):
+    if len(list) < 2:
+        return list
+    middle = int(len(list) / 2)
+    left = merge_sort(list[:middle])
+    right = merge_sort(list[middle:])
+    return merge(left, right)
 
 
 if __name__ == "__main__":
     arr = [9 - i for i in range(10)]
     print(merge_sort(arr))
+    arr2 = [87, 68, 62, 19, 90, 99, 77, 38, 37, 43, 66, 42, 14, 30, 57, 95, 67, 53, 76, 97, 75, 1, 15, 7, 100]
+    print(merge_sort(arr2))
