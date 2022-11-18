@@ -4,7 +4,7 @@ def merge(left, right):
         return left or right
     result = []
     i, j = 0, 0
-    while (len(result) < len(left) + len(right)):
+    while len(result) < len(left) + len(right):
         if left[i] < right[j]:
             result.append(left[i])
             i += 1
@@ -17,12 +17,12 @@ def merge(left, right):
     return result
 
 
-def merge_sort(list):
-    if len(list) < 2:
-        return list
-    middle = int(len(list) / 2)
-    left = merge_sort(list[:middle])
-    right = merge_sort(list[middle:])
+def merge_sort(array):
+    if len(array) < 2:
+        return array
+    middle = int(len(array) / 2)
+    left = merge_sort(array[:middle])
+    right = merge_sort(array[middle:])
     return merge(left, right)
 
 
