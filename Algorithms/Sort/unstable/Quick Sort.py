@@ -25,3 +25,4 @@ def partition(array, lo, hi):
 if __name__ == "__main__":
     arr = [9 - i for i in range(10)]
     print(quick_sort(arr))
+    print(quick_sort([87, 68, 62, 19, 90, 99, 77, 38, 37, 43, 66, 42, 14, 30, 57, 95, 67, 53, 76, 97, 75, 1, 15, 7, 100]))
