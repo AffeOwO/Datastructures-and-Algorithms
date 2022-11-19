@@ -1,6 +1,6 @@
 # O(n*log(n))
 def merge(left, right):
-    if not len(left) or not len(right):
+    if not left or not right:
         return left or right
     result = []
     i, j = 0, 0
