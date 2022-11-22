@@ -31,18 +31,27 @@ class LinkedList(Node):
         elif index == len(self):
             self.insert_at_end(data)
             return
-        elif index == 0:
+        elif index == 0 or index == len(self) * -1:
             self.insert_at_start(data)
             return
 
-        self.length += 1
         count = 0
         itr = self.head
+        if index > 0:
+            while itr:
+                if count == index - 1:
+                    node = Node(data, itr.next)
+                    itr.next = node
+                    self.length += 1
+                    return
+                count += 1
+                itr = itr.next
         while itr:
-            if count == index - 1 or count == len(self) + index - 1:
+            if count == len(self) + index:
                 node = Node(data, itr.next)
                 itr.next = node
-                break
+                self.length += 1
+                return
             count += 1
             itr = itr.next
 
@@ -74,7 +83,7 @@ class LinkedList(Node):
     def remove_element(self, index):
         if index < -1 * len(self) or index >= len(self):
             raise Exception("Invalid Index")
-        elif index == 0:
+        elif index == 0 or index == len(self) * -1:
             self.head = self.head.next
             self.length -= 1
             return
@@ -82,26 +91,46 @@ class LinkedList(Node):
         self.length -= 1
         count = 0
         itr = self.head
+        if index > 0:
+            while itr:
+                if count == index - 1:
+                    itr.next = itr.next.next
+                    return
+                count += 1
+                itr = itr.next
+
         while itr:
-            if count == index - 1 or count == len(self) + index + 1:
+            if count == len(self) + index:
                 itr.next = itr.next.next
                 break
             count += 1
             itr = itr.next
 
     def find(self, value):
-        # ToDo: Function to find value of index in linkedlist (first) -> returns value
-        pass
+        first_index = 0
+        itr = self.head
+        while itr:
+            if itr.data == value:
+                return first_index
+            itr = itr.next
+            first_index += 1
+        raise Exception(f"{value} not in linkedlist")
 
     def rfind(self, value):
         # ToDo: Function to find value of index in linkedlist (last) -> returns value
-        pass
+        last_value = 0
+        itr = self.head
+        while itr:
+            pass
+        raise Exception(f"{value} not in linkedlist")
 
-# ToDo: fix negative index not working properly for deleting and inserting
 
 
 if __name__ == "__main__":
-    ll = LinkedList(["teddy", "yas"])
-    ll.remove_element(-1)
+    ll = LinkedList("affe")
     print(ll)
-    print(len(ll))
+    print(len(ll), end="\n\n")
+    ll.insert_at_start("test")
+    print(ll)
+    print(len(ll), end="\n\n")
+    print(ll.find("test"))
