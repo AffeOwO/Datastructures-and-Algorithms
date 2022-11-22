@@ -117,20 +117,30 @@ class LinkedList(Node):
         raise Exception(f"{value} not in linkedlist")
 
     def rfind(self, value):
-        # ToDo: Function to find value of index in linkedlist (last) -> returns value
-        last_value = 0
+        last_value = -1
+        # index
+        temp = 0
         itr = self.head
         while itr:
-            pass
+            if itr.data == value:
+                last_value = temp
+            temp += 1
+            itr = itr.next
+        if last_value != -1:
+            return last_value
         raise Exception(f"{value} not in linkedlist")
 
 
 
 if __name__ == "__main__":
+    test = "affe"
+    print(test.find("f"))
+    print(test.rfind("f"))
+    print(test.index("f"))
+    print(test.rindex("f"))
     ll = LinkedList("affe")
-    print(ll)
-    print(len(ll), end="\n\n")
     ll.insert_at_start("test")
     print(ll)
     print(len(ll), end="\n\n")
-    print(ll.find("test"))
+    print(ll.find("f"))
+    print(ll.rfind("f"))
