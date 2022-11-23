@@ -16,11 +16,12 @@ class Stack:
         return self.head[-1]
 
     def is_empty(self):
-        if not self.head:
-            return True
-        return False
+        return not bool(self.head)
 
 
 if __name__ == "__main__":
     test = Stack()
-    test.peek()
+    test.push("asd")
+    print(test.peek())
+    test.pop()
+    print(test.is_empty())

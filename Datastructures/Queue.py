@@ -15,7 +15,14 @@ class Queue:
             raise "IndexError"
         return self.head[0]
 
+    def is_empty(self):
+        return not bool(self.head)
+
 
 if __name__ == "__main__":
     test = Queue()
-    test.peek()
+    print(test.is_empty())
+    test.enqueue("test")
+    print(test.is_empty())
+    test.dequeue()
+    print(test.is_empty())
