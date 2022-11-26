@@ -11,7 +11,7 @@ def solution_2(x):
     return (res - 1) // 1
 
 
-# newton
+# newton's method
 def solution_3(x):
     r = x
     while r ** 2 > x:
