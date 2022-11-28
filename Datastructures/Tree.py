@@ -1,4 +1,3 @@
-# ToDo: better
 class Node:
     def __init__(self, value, children=None, parent=None):
         if children is None:
@@ -13,10 +12,11 @@ class Tree(Node):
         self.root = Node(root)
 
     def add_child(self, child):
-        child.parent = self
-        self.children.append(child)
+        pass
+
+    # ToDo: implement everythin
 
 
 if __name__ == "__main__":
     tree = Tree("test")
-    print( tree.children)
+    print(tree.children)

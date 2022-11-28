@@ -1,4 +1,3 @@
-# ToDo: better
 class Node:
     def __init__(self, value, left=None, right=None):
         self.value = value
@@ -11,13 +10,14 @@ class BinaryTree(Node):
         self.root = Node(root)
 
     def __str__(self):
+        print("preorder")
         return self.preorder_print(self.root, "")[:-1]
 
     def search(self, find_val):
         return self.preorder_search(self.root, find_val)
 
     def get_root(self):
-        return self.root
+        return self.root.value
 
     def preorder_search(self, start, find_val):
         if start:
@@ -34,6 +34,8 @@ class BinaryTree(Node):
                 + self.preorder_print(start.right, traversal)
         return traversal
 
+    # ToDo: insert, delete, postorder, inorder
+
 
 if __name__ == "__main__":
     tree = BinaryTree(1)
@@ -42,3 +44,4 @@ if __name__ == "__main__":
     tree.root.left.left = Node(4)
     tree.root.left.right = Node(5)
     print(tree)
+    print(tree.get_root())
