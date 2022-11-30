@@ -1,10 +1,9 @@
 class Node:
-    def __init__(self, value, children=None, parent=None):
+    def __init__(self, value, children=None):
         if children is None:
             children = []
         self.value = value
         self.children = children
-        self.parent = parent
 
 
 class Tree(Node):
