@@ -1,6 +1,7 @@
+import math
+
 n, m, a = map(int, input().split())  # n*m = fläche | a*a fläche von flagstone
 
-if n*m == a*a:
-    print(1)
-
-# ToDo: 1A (https://codeforces.com/problemset/problem/1/A)
+len_squares = math.ceil(m / a)
+len2_squares = math.ceil(n / a)
+print(len_squares*len2_squares)
