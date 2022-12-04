@@ -16,3 +16,4 @@ temp = []
 temp2 = 0
 for i in range(beads - 1):
     pass
+# ToDo: solve task
