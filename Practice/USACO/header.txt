@@ -1,0 +1,5 @@
+"""
+ID: yamato berner (affeowo1)
+TASK: test
+LANG: PYTHON3
+"""
