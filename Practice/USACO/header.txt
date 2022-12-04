@@ -1,5 +1,8 @@
 """
 ID: yamato berner (affeowo1)
-TASK: test
+TASK: taskname
 LANG: PYTHON3
 """
+
+fin = open("taskname.in", "r")
+fout = open("taskname.out", "w")
