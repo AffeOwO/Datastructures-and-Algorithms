@@ -25,6 +25,10 @@ class LinkedList(Node):
         linked_list_str = linked_list_str[:-3]
         return linked_list_str
 
+    def __iter__(self):
+        # ToDo: make Linked List iterable
+        pass
+
     def insert_at(self, index, data):
         if index < -1 * len(self) or index > len(self):
             raise Exception("Invalid Index")
