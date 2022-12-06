@@ -2,6 +2,12 @@ class Heap:
     def __init__(self, values: list=[]):
         self.values = values
 
+    def __str__(self):
+        return " ".join([str(i) for i in self.values])
+
+    def __len__(self):
+        return len(self.values)
+
     def heapify(self):
         self.values.sort()
 
@@ -23,4 +29,6 @@ class Heap:
 
 
 if __name__ == "__main__":
-    pass
+    heap = Heap(["a", "b", 1])
+    print(heap)
+    print(len(heap))
