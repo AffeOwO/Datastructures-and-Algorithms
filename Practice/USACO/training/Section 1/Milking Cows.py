@@ -4,34 +4,25 @@ TASK: milk2
 LANG: PYTHON3
 """
 
-fin = open("temp.in", "r")
-fout = open("temp.out", "w")
+fin = open("milk2.in", "r")
+fout = open("milk2.out", "w")
 
-fin = fin.readlines()
-fin = fin[1:]
+fin = fin.readlines()[1:]
+fin.sort(key=lambda x: list(map(int, x.split()))[0])
+start, end = map(int, fin[0].split())
+longest, non_longest = end - start, 0
 
-longest, longest_non = 0, 0
-intervals = sorted([list(map(int, i.split())) for i in fin])
+for milking in fin:
+    temp_start, temp_end = map(int, milking.split())
+    if temp_start - end >= non_longest:
+        non_longest = temp_start - end
+    if start <= temp_start <= end:
+        if end < temp_end:
+            end = temp_end
+    else:
+        if end - start > longest:
+            longest = end - start
+        start, end = temp_start, temp_end
 
-# ToDo: make it faster than O(n^2)
-for i in intervals:
-    start, end = i[0], i[1]
-    for i2 in intervals:
-        if start <= i2[0] and end >= i2[1]:
-            i2[0] = start
-            i2[1] = end
-        elif start <= i2[0] <= end <= i2[1]:
-            i2[0] = start
-        elif i2[0] <= start <= i2[1] <= end:
-            i2[1] = end
-
-for index in range(len(intervals) - 1):
-    if intervals[index+1][0] - intervals[index][1] > longest_non:
-        longest_non = intervals[index+1][0] - intervals[index][1]
-    if intervals[index][1] - intervals[index][0] > longest:
-        longest = intervals[index][1] - intervals[index][0]
-if intervals[-1][1] - intervals[-1][0] > longest:
-    longest = intervals[-1][1] - intervals[-1][0]
-
-fout.write(f"{longest} {longest_non}\n")
+fout.write(f"{longest} {non_longest}\n")
 fout.close()
