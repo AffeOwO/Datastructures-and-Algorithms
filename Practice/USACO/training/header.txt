@@ -4,5 +4,5 @@ TASK: taskname
 LANG: PYTHON3
 """
 
-fin = open("taskname.in", "r")
-fout = open("taskname.out", "w")
+fin = open("temp.in", "r")
+fout = open("temp.out", "w")
