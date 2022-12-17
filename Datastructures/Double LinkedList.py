@@ -8,12 +8,8 @@ class Node:
 class LinkedList(Node):
     def __init__(self):
         self.head = None
-        self.length = 0
 
-
-    def __len__(self):
-        return self.length
-# ToDo: implement stuff
+    # ToDo: implement stuff
 
 
 if __name__ == "__main__":
