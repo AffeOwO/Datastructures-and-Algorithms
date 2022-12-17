@@ -8,8 +8,10 @@ class LinkedList(Node):
     def __init__(self, values: list = None):
         self.head = None
         self.length = 0
-        if values:
+        if type(values) == list:
             self.insert_values_at_start(values)
+        elif type(values) == str:
+            self.insert_at_start(values)
 
     def __len__(self):
         return self.length
@@ -26,8 +28,20 @@ class LinkedList(Node):
         return linked_list_str
 
     def __iter__(self):
-        # ToDo: make Linked List iterable
-        pass
+        self.iterate = 0
+        return self
+
+    def __next__(self):
+        temp_itr = 0
+        itr = self.head
+        while temp_itr != self.iterate:
+            temp_itr += 1
+            if itr.next is None:
+                raise  StopIteration
+            itr = itr.next
+
+        self.iterate += 1
+        return itr.data
 
     def insert_at(self, index, data):
         if index < -1 * len(self) or index > len(self):
@@ -138,13 +152,8 @@ class LinkedList(Node):
 
 if __name__ == "__main__":
     test = "affe"
-    print(test.find("f"))
-    print(test.rfind("f"))
-    print(test.index("f"))
-    print(test.rindex("f"))
-    ll = LinkedList("affe")
+    ll = LinkedList(list("affe"))
     ll.insert_at_start("test")
     print(ll)
-    print(len(ll), end="\n\n")
-    print(ll.find("f"))
-    print(ll.rfind("f"))
+    for i in ll:
+        print(i)
