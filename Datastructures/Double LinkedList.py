@@ -5,12 +5,5 @@ class Node:
         self.next = next
 
 
-class LinkedList(Node):
-    def __init__(self):
-        self.head = None
-
-    # ToDo: implement stuff
-
-
 if __name__ == "__main__":
     pass
