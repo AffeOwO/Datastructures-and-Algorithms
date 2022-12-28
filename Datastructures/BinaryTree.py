@@ -1,3 +1,6 @@
+from collections import deque
+
+
 class Node:
     def __init__(self, value, left=None, right=None):
         self.value = value
@@ -10,7 +13,7 @@ class BinaryTree(Node):
         self.root = root
 
     def __str__(self):
-        print("BFS:", self.bfs_traversal(self.root)[:-1])
+        print("BFS:", self.bfs_traversal(self.root))
         print()
         print("Inorder:", self.inorder_print(self.root)[1:])
         print("Preorder:", self.preorder_print(self.root)[:-1])
@@ -52,10 +55,19 @@ class BinaryTree(Node):
                         + self.inorder_print(start.right, traversal)
         return traversal
 
-    def bfs_traversal(self, start):
-        # TODO: bfs
-        ...
+    def bfs_traversal(self, start: Node):
+        if not start: return []
+        queue, result = deque([start]), []
 
+        while queue:
+            level = []
+            for i in range(len(queue)):
+                node = queue.popleft()
+                level.append(node.value)
+                if node.left:  queue.append(node.left)
+                if node.right: queue.append(node.right)
+            result.append(level)
+        return result
 
 if __name__ == "__main__":
     tree = BinaryTree(Node(1))
