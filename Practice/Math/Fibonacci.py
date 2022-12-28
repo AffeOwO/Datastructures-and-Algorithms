@@ -25,5 +25,3 @@ if __name__ == "__main__":
         print(f"{i}: {get_fib(i)}")
     for i in range(1, 10001):
         print(f"{i}: {get_fib_recursive(i)}")
-
-    # get_fib_recursive() is faster bcs of caching
