@@ -46,7 +46,6 @@ class BST(object):
                         + self.display_recursive(start.left, traversal) \
                         + self.display_recursive(start.right, traversal)
         return traversal
-# ToDo: implement stuff
 
 
 if __name__ == "__main__":
