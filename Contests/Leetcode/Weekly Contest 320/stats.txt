@@ -1,0 +1,4 @@
+solved Number of Unequal Triplets in Array.py
+Ranking: #10k+
+
+# this contest was terrible since i didnt know how to solve binary tree problems

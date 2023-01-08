@@ -1,0 +1,2 @@
+"Number of Distinct Averages" solved
+Ranking: #9299
