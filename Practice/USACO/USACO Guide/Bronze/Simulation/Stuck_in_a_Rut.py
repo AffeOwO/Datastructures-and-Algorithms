@@ -1,27 +1,26 @@
 n = int(input())
-xs = []
-ys = []
-dirs = []
-for _ in range(n):
-    cow = input().split(' ')
-    xs.append(int(cow[1]))
-    ys.append(int(cow[2]))
-    dirs.append(cow[0])
-answer = [float('inf') for _ in range(n)]
-diffs = []
-for j in range(n):
-    for k in range(1,n):
-        diffs.append(abs(xs[k]-xs[j]))
-        diffs.append(abs(ys[k]-ys[j]))
-diffs.sort()
+ncows = []
+ecows = []
+for i in range(n):
+	dir, x, y = input().split()
+	if dir == 'N':
+		ncows.append((i, int(x), int(y)))
+	elif dir == 'E':
+		ecows.append((i, int(x), int(y)))
+ncows.sort(key = lambda cow: cow[1])
+ecows.sort(key = lambda cow: cow[2])
+res = [float('inf')]*n
+for c1 in ncows:
+	for c2 in ecows:
+		a,b = c1[1],c1[2]
+		c,d = c2[1],c2[2]
+		if a-c < 0 or d-b < 0 or a-c == d-b: continue
+		if a-c > d-b:
+			if a-c > res[c1[0]]:continue
+			res[c2[0]] = min(res[c2[0]], a-c)
+		else:
+			if d-b > res[c2[0]]:continue
+			res[c1[0]] = min(res[c1[0]], d-b)
 
-for d in diffs:
-    for j in range(n): #iterating through every pair of cows
-        for k in range(n):
-            if dirs[j] == 'E' and dirs[k] == 'N' and xs[j] < xs[k] and ys[k] < ys[j]:
-                if xs[j] + d == xs[k] and ys[k] + min(answer[k],d) > ys[j]:
-                    answer[j] = min(answer[j],d)
-                elif ys[k] + d == ys[j] and xs[j] + min(answer[j],d) > xs[k]:
-                    answer[k] = min(answer[k], d)
 for j in range(n):
-    print("Infinity" if answer[j] == float('inf') else answer[j])
+	print("Infinity" if res[j] == float('inf') else res[j])
