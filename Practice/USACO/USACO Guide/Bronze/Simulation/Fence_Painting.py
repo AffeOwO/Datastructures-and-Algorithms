@@ -1,5 +1,5 @@
 fin = list(map(int, open("paint.in").read().split()))
-fout = open("paint.out")
+fout = open("paint.out", "w")
 total = 0
 vals = fin
 
