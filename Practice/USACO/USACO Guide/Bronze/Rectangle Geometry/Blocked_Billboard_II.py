@@ -1,11 +1,28 @@
-fin = open("billboard.in").read().splitlines()  # bad board, good board(overlay on bad)
-fout = open("billboard.out", "w")
+fin, fout = open("billboard.in"), open("billboard.out", "w")
 
-boxes = [list(map(int, i.split())) for i in fin]
-sol = (boxes[0][2] - boxes[0][0]) * (boxes[0][3] - boxes[0][1])
-if boxes[1][0] <= boxes[0][0] and boxes[1][2] >= boxes[0][2]:
-    ...
-elif boxes[1][1] <= boxes[0][1] and boxes[1][3] >= boxes[0][3]:
-    ...
+x1, y1, x2, y2 = map(int, fin.readline().split())
+x3, y3, x4, y4 = map(int, fin.readline().split())
 
-fout.write(f"{sol}\n")
+tl_corner = x3 <= x1 and y4 >= y2
+tr_corner = y4 >= y2 and x4 >= x2
+br_corner = x4 >= x2 and y3 <= y1
+bl_corner = y3 <= y1 and x3 <= x1
+
+corner_num = sum([tl_corner, tr_corner, br_corner, bl_corner])
+if bl_corner and tr_corner:
+	fout.write(str(0))
+
+elif corner_num in [0, 1]:
+	fout.write(str(abs(x2 - x1) * abs(y2 - y1)))
+
+elif br_corner and tr_corner:
+	fout.write(str(abs(y2 - y1) * abs(x2 - x4)))
+
+elif bl_corner and tl_corner:
+	fout.write(str(abs(y2 - y1) * abs(x2 - x4)))
+
+elif tr_corner and tl_corner:
+	fout.write(str(abs(x2 - x1) * abs(y3 - y1)))
+
+elif br_corner and bl_corner:
+	fout.write(str(abs(x2 - x1) * abs(y3 - y1)))
