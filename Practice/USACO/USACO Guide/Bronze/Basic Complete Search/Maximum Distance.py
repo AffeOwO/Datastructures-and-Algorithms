@@ -4,7 +4,7 @@ ys = list(map(int, input().split()))
 maxi = -1
 
 # pythagorean theorem sqrt which isn't needed since we have to square it again -> sqrt(n)**2 = n
-# we are looking for the squared euclidean distance which is the manhatten distance
+# we are looking for the squared euclidean distance which is the manhatten distance where each side is squared
 
 for index in range(n):
     for index2 in range(index+1, n):
