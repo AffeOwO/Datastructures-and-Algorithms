@@ -1,3 +1,4 @@
+# GCD
 def euclidean(int1, int2):
     if int2 == 0:
         return int1
