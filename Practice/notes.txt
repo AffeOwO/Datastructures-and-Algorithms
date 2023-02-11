@@ -1,0 +1,2 @@
+g++ filename -static
+to make files work which have vectors in it
