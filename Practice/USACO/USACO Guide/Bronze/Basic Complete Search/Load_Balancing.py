@@ -40,3 +40,5 @@ for i in y_vals:
         horizontal = temp
 
 fout.write(f"{max((max(horizontal[0]), max(horizontal[1])))}\n")
+
+# TODO fix bugs or rewrite
