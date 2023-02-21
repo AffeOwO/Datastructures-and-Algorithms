@@ -7,8 +7,8 @@ using ld = long double;
 #define endl "\n"
 
 int main() {
-    //ifstream fin("")
-    //ofstream fout("")
+    //ifstream fin("");
+    //ofstream fout("");
 
     ios::sync_with_stdio(0);
     cin.tie(0);
