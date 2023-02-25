@@ -22,5 +22,5 @@ int main() {
         }
         idk = min(idk, pair<int, int> {s, i});
     }
-    cout << idk.second+1 << endl;
+    //cout << idk.second+1 << endl;
 }
