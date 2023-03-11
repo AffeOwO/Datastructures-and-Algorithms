@@ -10,7 +10,8 @@ using ll = long long;
 using ull = unsigned long long;
 using ld = long double;
 #define endl "\n"
-#define all(x) (x).begin(), (x).end()
+#define all(x) (x).begin(), (x).end();
+#define MOD 1000000007;
 
 int main() {
     //ifstream fin("");
