@@ -13,7 +13,7 @@ int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    bitset<131072> maxi;
+    bitset<131072> maxi; // 2^17
     int n = 131072;
     int cnt=0;
     for(int i=2; i<n; i++) {
