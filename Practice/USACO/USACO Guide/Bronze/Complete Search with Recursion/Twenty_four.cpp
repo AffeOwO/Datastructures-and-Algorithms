@@ -13,7 +13,7 @@ using ld = long double;
 #define all(x) (x).begin(), (x).end()
 #define MOD 1000000007
 
-int maxi=0;
+int maxi;
 
 int calculate(int operation, int num1, int num2) {
     switch(operation) {
@@ -24,12 +24,11 @@ int calculate(int operation, int num1, int num2) {
     }
     cout << operation << " ";
 
-    return -1;
+    return INT32_MIN;
 }
 
 
 void solve(vector<int> nums) {
-    // this code should be a crime
     for(int i=0; i<4; i++) {
         for(int j=0; j<4; j++) {
             for(int o=0; o<4; o++) {
@@ -44,19 +43,21 @@ void solve(vector<int> nums) {
             }
         }
     }
-    
 
+    for(int i=0; i<4; i++) {
+        for(int j=0; j<4; j++) {
+            for(int o=0; o<4; o++) {
+                if(nums[0] % nums[1] != 0 && i == 3) continue;
+                int cur = calculate(i, nums[0], nums[1]);
+                if(nums[2] % nums[3] != 0 && o == 3) continue;
+                int temp = calculate(o, nums[2], nums[3]);
+                if(cur % temp != 0 && j == 3) continue;
+                cur = calculate(j, cur, temp);
+                if(cur>maxi && cur <=24) maxi = cur;
+            }
+        }
+    }
 }
-
-/*
-right now, iterate through all permutaions of numbers and then try all combinations of signs, 
-assuming that - is only used to substract and not for negative numbers like -x
-
-for all permutations (4! -> 24), try all sign combinations
-for each order, there are 4^3 -> 64 different sign combinations
-
--> O(4^n) (4! is a constant)
-*/
 
 int main() {
     //ifstream fin("");
@@ -66,7 +67,6 @@ int main() {
     cin.tie(0);
     
     int n; cin >> n; 
-    int temp;
     while(n--) {
         vector<int> nums(4); cin >> nums[0] >> nums[1] >> nums[2] >> nums[3];
         maxi = 0;
