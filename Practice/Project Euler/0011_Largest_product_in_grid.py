@@ -21,4 +21,21 @@ my_grid = """08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 for index, i in enumerate(my_grid):
     my_grid[index] = list(map(int, i.split()))
 
-greatest = [] # vertical, horizontal, diagonal
+greatest = -1
+for i in range(20):
+    for j in range(3, 20):
+        temp = my_grid[i][j] * my_grid[i][j-1] * my_grid[i][j-2] * my_grid[i][j-3]
+        if temp > greatest: greatest = temp
+        temp = my_grid[j][i] * my_grid[j-1][i] * my_grid[j-2][i] + my_grid[j-3][i]
+        if temp > greatest: greatest = temp
+
+
+for i in range(3, 20):
+    for j in range(3, 20):
+        temp = my_grid[i][j] * my_grid[i-1][j-1] * my_grid[i-2][j-2] * my_grid[i-3][j-3]
+        if temp > greatest: greatest = temp
+        temp = my_grid[i][j-3] * my_grid[i-1][j-2] * my_grid[i-2][j-1] * my_grid[i-3][j]
+        if temp > greatest: greatest = temp
+
+
+print(greatest)
