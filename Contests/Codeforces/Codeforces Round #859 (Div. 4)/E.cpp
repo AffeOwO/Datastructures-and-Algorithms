@@ -24,7 +24,8 @@ void solve() {
     }
     // kinda binary search
     int left = 1, right = n;
-    while(left <= right) {
+    int mid = right+1;
+    while(left <= right and left < mid) {
         int mid = (left+right)/2+1;
         cout << "? " << mid-left;
         for(int i=left; i< mid; i++) cout << " " << i;
@@ -50,5 +51,4 @@ int main() {
     
     int t; cin >> t;
     while(t--) solve();
-    exit;
 }
