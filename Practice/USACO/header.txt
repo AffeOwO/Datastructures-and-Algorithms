@@ -4,5 +4,12 @@ TASK: taskname
 LANG: PYTHON3
 """
 
+/*
+ID: yamato berner (affeowo1)
+TASK: namenum
+LANG: C++23
+*/
+
+
 fin = open("temp.in", "r")
 fout = open("temp.out", "w")
