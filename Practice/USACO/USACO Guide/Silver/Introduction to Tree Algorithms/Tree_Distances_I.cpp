@@ -47,7 +47,8 @@ void dfs2(int v, int p) {
 }
 
 int main() {
-	FIO;
+	ios::sync_with_stdio(0);
+    cin.tie(0);
 	int n, u, v;
 	cin >> n;
 	for (int i = 0; i < n - 1; i++) {
