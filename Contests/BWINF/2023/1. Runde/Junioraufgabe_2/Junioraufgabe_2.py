@@ -7,7 +7,7 @@ img = Image.open(argv[1], "r")
 # Breite und Höhe des Bildes
 w, h = img.size
 
-# Daten des Bildes in einer matrix speichern
+# Daten des Bildes in einer h x w-Matrix speichern
 mat = list(img.getdata())
 mat = [mat[i:i+w] for i in range(0, len(mat), w)]
 
@@ -15,7 +15,7 @@ mat = [mat[i:i+w] for i in range(0, len(mat), w)]
 sol = ""
 cur = [0, 0]
 
-# Buchstaben zum Lösungsstring hinzufügen und zum nächstne Pixel finden bis man wieder am Startpunkt (0, 0) ist
+# entschlüsseln der Nachricht
 while True:
     sol += chr(mat[cur[0]][cur[1]][0])
     if mat[cur[0]][cur[1]][1] == 0 and mat[cur[0]][cur[1]][2] == 0: break

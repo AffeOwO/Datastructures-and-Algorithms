@@ -8,6 +8,7 @@ using ld = long double;
 #define all(x) (x).begin(), (x).end()
 #define MOD 1000000007
 
+// Definieren von Variablen
 int n, m; 
 pair<int, int> A, B;
 bool possible = false;
@@ -15,7 +16,9 @@ vector<vector<char>> mat1, mat2;
 vector<vector<pair<int, char>>> dist1, dist2;
 vector<vector<bool>> vis1, vis2;
 
+// custom struct für Koordinaten
 struct coords {
+    // d = distance; y = y-coord; x = x-coord; f = floor (1, 2)
     int d, y, x, f;
     bool operator<(const coords& c2) const {
         return d>c2.d;
@@ -23,18 +26,21 @@ struct coords {
 };
 
 int main(int argc, char* argv[]) {
+    // input stream setzen
     ifstream fin(argv[1]);
 
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    // weighted graph -> dijkstra
+    // einlesen der Werte
     fin >> n >> m;
+    // Gräße neu festlegen von Vektoren
     mat1.resize(n, vector<char>(m)); mat2.resize(n, vector<char>(m));
     for(int i=0; i<n; i++) {
         string s; fin >> s;
         for(int j=0; j<m; j++) {
             mat1[i][j] = s[j];
+            // Falls aktuelles Feld Start oder Ziel ist, diese Koordinaten abspeichern
             if(s[j] == 'A') A = make_pair(i, j);
             else if(s[j] == 'B') B = make_pair(i, j);
         }
@@ -44,17 +50,6 @@ int main(int argc, char* argv[]) {
         for(int i=0; i<m; i++) x[i] = s[i];
     }
 
-    /*
-    for(auto &x: mat1) {
-        for(auto &y: x) cout << y;
-        cout << endl;
-    }
-    cout << endl;
-    for(auto &x: mat2) {
-        for(auto &y: x) cout << y;
-        cout << endl;
-    } 
-    cout << endl; */
 
     // when doing dijkstra, save the previous cell, so you can output the path afterwards
     // movement is shifted one forward here
@@ -65,6 +60,7 @@ int main(int argc, char* argv[]) {
 
     priority_queue<coords> q; // .first = y, .second = x, .third = 1 or 2 (floor)
     q.push({0, A.first, A.second, 1});
+    // Dijkstra
     while(!q.empty()) {
         coords cur = q.top(); q.pop();
         if(cur.f == 1) {
@@ -117,10 +113,10 @@ int main(int argc, char* argv[]) {
         }
     }
 
-
+    // Lösung ausgeben, falls ein Weg vorhanden ist und den Weg zurückverfolgen und ausgeben.
     if(dist1[B.first][B.second].second=='_') cout << "Punkt B kann nicht erreicht werden" << endl;
     else {
-        cout << "L\x84nge der Strecke: " << dist1[B.first][B.second].first << endl;
+        cout << "Dauer des Weges: " << dist1[B.first][B.second].first << endl << endl;
         // print out path
         pair<int, int> trace = B; int floor = 1;
         while(!(trace.first == A.first and trace.second == A.second and floor == 1)) {
@@ -186,16 +182,4 @@ int main(int argc, char* argv[]) {
         } 
         cout << endl;
     }
-
-    /*
-    for(auto &x: dist1) {
-        for(auto &y: x) cout << y.second;
-        cout << endl;
-    }
-    cout << endl;
-    for(auto &x: dist2) {
-        for(auto &y: x) cout << y.second;
-        cout << endl;
-    }
-    */
 }
