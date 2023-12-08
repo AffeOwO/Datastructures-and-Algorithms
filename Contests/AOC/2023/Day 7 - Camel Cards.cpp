@@ -9,14 +9,25 @@ using ld = long double;
 #define MOD 1000000007
 
 map<char, int> strengths = {{'A', 14}, {'K', 13}, {'Q', 12}, {'J', 11}, {'T', 10}};
+bool part = false; // false = part 1; true = part 2
 
 int handtype(string hand) {
     map<char, int> cnt;
     vector<char> chars;
     for(auto &x: hand) {
-        if(!cnt.count(x)) chars.push_back(x);
-        cnt[x]++;
+        if(!cnt.count(x) and (!part or x!='J')) chars.push_back(x);
+            cnt[x]++;
+        }
+    if(part and cnt.count('J')) {
+        int jokers = cnt['J'];
+        cnt.erase('J');
+        pair<char, int> maxi;
+        for(auto &x: cnt) {
+            if(x.second>maxi.second) maxi = x;
+        }
+        cnt[maxi.first] += jokers;
     }
+
     if(cnt.size()==1) return 6;
     else if(cnt.size()==2) {
         if(cnt[chars[0]]==4 or cnt[chars[0]]==1) return 5;
@@ -54,6 +65,7 @@ int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
     
+    // part 1
     vector<pair<string, ll>> hands(1000);
     for(int i=0; i<1000; i++) {
         string s; getline(fin, s);
@@ -61,9 +73,17 @@ int main() {
         hands[i].second = stoll(s.substr(6, s.size()-5));
     }
     sort(all(hands), cstm);
-    for(int i=700; i<710; i++) cout << hands[i].first << endl;
 
     ll sol1 = 0;
     for(ll i=0; i<1000; i++) sol1 += hands[i].second*(i+1);
     fout << sol1 << endl;
+
+    // part 2
+    strengths['J'] = 0; // joker strength 
+    part = true;
+    sort(all(hands), cstm);
+
+    ll sol2 = 0;
+    for(ll i=0; i<1000; i++) sol2 += hands[i].second*(i+1);
+    fout << sol2 << endl;
 }
