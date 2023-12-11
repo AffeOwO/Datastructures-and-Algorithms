@@ -10,13 +10,15 @@ using ld = long double;
 
 vector<vector<bool>> visited;
 vector<vector<char>> systemy, pipe;
+int n = 140, m = 140;
 
 void floody1(int y, int x) {
+    if(visited[y][x]) return;
     visited[y][x] = true;
-    if(y>0 and !visited[y-1][x] and pipe[y-1][x] == '#') floody1(y-1, x);
-    if(y<139 and !visited[y+1][x] and pipe[y+1][x] == '#') floody1(y+1, x);
-    if(x>0 and !visited[y][x-1] and pipe[y][x-1] == '#') floody1(y, x-1);
-    if(x<139 and !visited[y][x+1] and pipe[y][x+1] == '#') floody1(y, x+1);
+    if(y>0 and pipe[y-1][x] == '#') floody1(y-1, x);
+    if(y<n-1 and pipe[y+1][x] == '#') floody1(y+1, x);
+    if(x>0 and pipe[y][x-1] == '#') floody1(y, x-1);
+    if(x<m-1 and pipe[y][x+1] == '#') floody1(y, x+1);
 }
 
 int main() {
@@ -39,7 +41,7 @@ int main() {
         }
         i++;
     }
-    pipe.resize(140, vector<char>(140, '#'));
+    pipe.resize(n, vector<char>(m, '#'));
     int length = 1;
     cur = make_pair(prev.first-1, prev.second); // my input
     while('S' != systemy[cur.first][cur.second]) {
@@ -108,28 +110,28 @@ int main() {
         }
         pipe[prev.first][prev.second] = systemy[prev.first][prev.second];
     }
-    visited.resize(140, vector<bool>(140));
-    floody1(0, 0); floody1(139, 0); floody1(65, 0);
-
-    /*
-    for(auto x: visited) {
-        for(auto y: x) fout << y;
-        fout << endl;
+    visited.resize(n, vector<bool>(m));
+    for(int i=0; i<m; i++) {
+        floody1(0, i);
+        floody1(n-1, i);
     }
-    for(auto x: pipe) {
-        for(auto y: x) fout << y;
-        fout << endl;
-    }*/
+    for(int i=0; i<n; i++) {
+        floody1(i, 0);
+        floody1(i, m-1);
+    }
+
     int sol2 = 0;
-    for(int i=0; i<140; i++) {
-        for(int j=0; j<140; j++) {
-            if(!visited[i][j] and systemy[i][j] == '.') {
+    for(int i=0; i<n; i++) {
+        for(int j=0; j<m; j++) {
+            if(!visited[i][j] and pipe[i][j] == '#') {
                 int cnt = 0;
-                for(int k=j+1; k<140; k++) {
-
+                char last;
+                for(int k=j+1; k<m; k++) {
+                    if(pipe[i][k] == '|') cnt++;
+                    else if(pipe[i][k] == 'L' or pipe[i][k] == 'F') last = pipe[i][k];
+                    else if((pipe[i][k] == '7' and last == 'L') or (pipe[i][k] == 'J' and last == 'F')) cnt++;
                 }
-
-                if(cnt%2==1) sol2++:
+                if(cnt%2==1) sol2++;
             }
         }
     }
