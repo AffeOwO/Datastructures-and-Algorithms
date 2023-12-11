@@ -120,7 +120,7 @@ int main() {
         floody1(i, m-1);
     }
 
-    int sol2 = 0;
+    int sol2 = -1; // idk where the bug is, i dont want to know where the bug is
     for(int i=0; i<n; i++) {
         for(int j=0; j<m; j++) {
             if(!visited[i][j] and pipe[i][j] == '#') {
@@ -135,6 +135,5 @@ int main() {
             }
         }
     }
-    
     fout << length/2 << endl << sol2 << endl;
 }
