@@ -1,84 +1,75 @@
 #include <bits/stdc++.h>
+
+//ifstream fin("");
+//ofstream fout("");
+
 using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+#define endl "\n"
+#define all(x) (x).begin(), (x).end()
+#define MOD 1000000007
 
-vector<int> adj[200001];
-int firstMax[200001];   // to store first-max length.
-int secondMax[200001];  // to store second-max length.
-int c[200001];          // to store child for path of max length.
+int n;
+vector<vector<int>> edges1;
+vector<int> toLeaf1, par1;
+vector<vector<pair<int, int>>> idk1;
 
-// calculate for every node x the maximum
-// length of a path that goes through a child of x
-void dfs(int v, int p) {
-	firstMax[v] = 0;
-	secondMax[v] = 0;
-	for (auto x : adj[v]) {
-		if (x == p) continue;
-		dfs(x, v);
-		if (firstMax[x] + 1 > firstMax[v]) {
-			secondMax[v] = firstMax[v];
-			firstMax[v] = firstMax[x] + 1;
-			c[v] = x;
-		} else if (firstMax[x] + 1 > secondMax[v]) {
-			secondMax[v] = firstMax[x] + 1;
-		}
-	}
+void dfs1(int node, int par) {
+    par1[node] = par;
+    for(auto &x: edges1[node]) {
+        if(x!=par) {
+            dfs1(x, node);
+            toLeaf1[node] = max(toLeaf1[node], toLeaf1[x]+1);
+        }
+    }
 }
 
-// calculate for every node x the
-// maximum length of a path through its parent p
-void dfs2(int v, int p) {
-	for (auto x : adj[v]) {
-		if (x == p) continue;
-		if (c[v] == x) {
-			if (firstMax[x] < secondMax[v] + 1) {
-				secondMax[x] = firstMax[x];
-				firstMax[x] = secondMax[v] + 1;
-				c[x] = v;
-			} else {
-				secondMax[x] = max(secondMax[x], secondMax[v] + 1);
-			}
-		} else {
-			secondMax[x] = firstMax[x];
-			firstMax[x] = firstMax[v] + 1;
-			c[x] = v;
-		}
-		dfs2(x, v);
+void bruh1(int node) {
+    if(idk1[par1[node]][0].second==node) idk1[node].push_back({idk1[par1[node]][1].first+1, par1[node]});
+    else idk1[node].push_back({idk1[par1[node]][0].first+1, par1[node]});
+    for(auto &x: edges1[node]) {
+        if(x!=par1[node]) idk1[node].push_back({toLeaf1[x]+1, x});
+    }
+    sort(all(idk1[node]), greater<pair<int, int>>());
+    for(auto &x: edges1[node]) {
+        if(x!=par1[node]) bruh1(x);
+    }
+}
+
+void solve() {
+    cin >> n;
+
+	if(n==1) {
+		cout << 0 << endl;
+		return;
 	}
+
+    edges1.resize(n);
+    for(int i=1; i<n; i++) {
+        int a, b; cin >> a >> b;
+        a--; b--;
+        edges1[a].push_back(b);
+        edges1[b].push_back(a);
+    }
+    toLeaf1.resize(n);
+    par1.resize(n);
+    
+    dfs1(0, 0);
+
+    idk1.resize(n);
+    for(auto &x: edges1[0]) idk1[0].push_back({toLeaf1[x]+1, x});
+    sort(all(idk1[0]), greater<pair<int, int>>());
+    for(auto &x: edges1[0]) bruh1(x);
+
+	for(auto &x: idk1) cout << x[0].first << " ";
+	cout << endl; 
 }
 
 int main() {
 	ios::sync_with_stdio(0);
     cin.tie(0);
-	int n, u, v;
-	cin >> n;
-	for (int i = 0; i < n - 1; i++) {
-		cin >> u >> v;
-		adj[u].push_back(v);
-		adj[v].push_back(u);
-	}
-	dfs(1, -1);
-	dfs2(1, -1);
-
-	for (int i = 1; i <= n; i++) { cout << firstMax[i] << " "; }
-	return 0;
+	
+	solve();
 }
-
-/*
-cout << dist[0] << " ";
-    for(int i=1; i<n; i++) {
-        // now go through parents and then child dist + amount of parents
-        int curn = i, pcnt = 1, curmax = dist[i], prev = i;
-        while(true) {
-            pcnt++;
-            curn = par[curn];
-            if(curn == -1) break;
-            for(auto &x: edges[curn]) {
-                if(x!=prev and x != par[curn]) curmax = max(curmax, dist[x]+pcnt);
-            }
-            prev = curn;
-        }
-        curmax = max(curmax, pcnt-2);
-        cout << curmax << " ";
-    }
-    cout << endl;
-*/
