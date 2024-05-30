@@ -10,7 +10,7 @@ using ld = long double;
 
 struct segtree {
     int size = 1;
-    vector<int> sums;
+    vector<ll> sums;
 
     void init(int n) {
         while(size<n) size *= 2;
