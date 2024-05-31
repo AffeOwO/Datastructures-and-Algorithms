@@ -41,10 +41,6 @@ int main() {
             s2.insert(*s1.rbegin());
             s1.erase(s1.find(*s1.rbegin()));
         }
-        /*for(auto &x: s1) cout << x << " ";
-            cout << "...";
-            for(auto &x: s2) cout << x << " ";
-            cout << endl;*/
         if(i-k>=-1) cout << *s1.rbegin() << " ";
     }
     cout << endl;
