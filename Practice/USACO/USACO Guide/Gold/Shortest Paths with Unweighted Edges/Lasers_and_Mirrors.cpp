@@ -1,8 +1,4 @@
-#include <cstdio>
-#include <iostream>
-#include <queue>
-#include <unordered_map>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
